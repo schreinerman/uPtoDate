@@ -1,0 +1,5 @@
+#!/bin/bash
+scriptPath=$(dirname "$0")'/../Resources/script/run.sh'
+cd "$(dirname "$0")'/../Resources/script'"
+WORKDIR="$(dirname "$0")/../Resources/script"
+osascript -e "tell app \"Terminal\" to do script \"cd \\\"$WORKDIR\\\" && ./run.sh\""
