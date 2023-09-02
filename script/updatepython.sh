@@ -9,10 +9,11 @@ updatePythonVersion()
     PYTHON="python$PYTON_VERSION"
     if [ "$(command -v $PIP)" ]
     then
-        echo "${GREEN}Updating python $PYTON_VERSION packages...${NC}"
+        printf "${GREEN}Updating python $PYTON_VERSION packages...${NC}"
         fixPermissions
         $PYTHON -m pip uninstall -y pip
         $PYTHON -m pip install --user --upgrade pip
+        $PYTHON -m pip install --upgrade --force-reinstall pip
         
         $PIP list -o | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 | xargs -n1 $PIP install --upgrade --no-cache-dir --use-deprecated=legacy-resolver || true
     fi
